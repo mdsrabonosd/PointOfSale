@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PointOfSale.DataModel;
 
 namespace PointOfSale.Data
 {
@@ -8,6 +9,8 @@ namespace PointOfSale.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+   
         }
+        public DbSet<Product> Products { get; set; } = default;
     }
 }

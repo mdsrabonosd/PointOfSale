@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="border rounded p-4 shadow-sm bg-light">
+
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>Product Name</label>
+                        <input type="text" name="Name" class="form-control">
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Supplier ID</label>
+                        <input type="number" name="SupplyerId" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>Category ID</label>
+                        <input type="number" name="CatagoryId" class="form-control">
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Buy Price</label>
+                        <input type="number" step="0.01" name="BuyPrice" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>Sale Price</label>
+                        <input type="number" step="0.01" name="SalePrice" class="form-control">
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Expire Date</label>
+                        <input type="date" name="ExpireDate" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Product Image</label>
+                    <input type="text" name="Image" class="form-control">
+                </div>
+
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</form>

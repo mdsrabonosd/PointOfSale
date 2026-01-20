@@ -185,34 +185,93 @@
                 <!-- Sidebar Menu -->
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-                             with font-awesome or any other icon font library -->
+                    <ul class="nav nav-pills nav-sidebar flex-column"
+                        data-widget="treeview"
+                        role="menu"
+                        data-accordion="false">
+
+                        <!-- Dashboard Menu -->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                   Dashboard 1
+                                    Product
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a asp-action="" asp-controller="" class="nav-link">
+                                    <a asp-controller="Product" asp-action="Create" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>v1 </p>
+                                        <p>Product Create</p>
                                     </a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a asp-action="" asp-controller="" class="nav-link">
+                                    <a asp-controller="Home" asp-action="Index2" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Product List</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Catagory
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-controller="Home" asp-action="Index" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>v1</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a asp-controller="Home" asp-action="Index2" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>v2</p>
                                     </a>
                                 </li>
-
-                                @* New menu added here *@
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Supplier
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-controller="Home" asp-action="Index" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>v1</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a asp-controller="Home" asp-action="Index2" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>v2</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Another Menu (example) -->
+                        
+
+                    </ul>
                 </nav>
+
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
@@ -225,7 +284,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Blank Page</h1>
+                            
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
