@@ -1,0 +1,41 @@
+﻿@model PointOfSale.DataModel.Catagory
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white text-center">
+                    <h5 class="mb-0">Add New Category</h5>
+                </div>
+
+                <div class="card-body">
+                    <form asp-controller="Catagory" asp-action="CatagoryCreate" method="post">
+
+                        <div class="form-group mb-3">
+                            <label asp-for="CatagoryName"></label>
+                            <input asp-for="CatagoryName" class="form-control" />
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input asp-for="IsActive" class="form-check-input" />
+                            <label asp-for="IsActive" class="form-check-label"></label>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary px-5">
+                                Save Category
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
