@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PointOfSale.Data;
 using PointOfSale.DataModel;
+using PointOfSale.ViewModel;
 
 namespace PointOfSale.Controllers
 {
@@ -24,10 +25,21 @@ namespace PointOfSale.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CatagoryCreate(Catagory obj)
+        public IActionResult CatagoryCreate(CatagoryVM obj)
         {
-            _Dbcontext.Catagories.Add(obj);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            var data = new Catagory();
+
+            data.CatagoryName = obj.CatagoryName;
+            data.IsActive = obj.IsActive;
+
+            _Dbcontext.Catagories.Add(data);
             _Dbcontext.SaveChanges();
+
             return View(obj);
         }
     }
