@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using PointOfSale.Data;
 using PointOfSale.DataModel;
 using PointOfSale.ViewModel;
-
 namespace PointOfSale.Controllers
 {
     public class CatagoryController : Controller
@@ -14,7 +13,6 @@ namespace PointOfSale.Controllers
         {
             _Dbcontext = dbcontext;
         }
-
         public IActionResult Index()
         {
             return View();
@@ -41,6 +39,10 @@ namespace PointOfSale.Controllers
             _Dbcontext.SaveChanges();
 
             return View(obj);
+        }
+        public IActionResult CatagoryList()
+        {
+            return View();
         }
     }
 }
