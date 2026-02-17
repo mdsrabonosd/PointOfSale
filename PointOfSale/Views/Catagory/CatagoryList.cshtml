@@ -1,7 +1,47 @@
-﻿
+﻿@model IEnumerable<PointOfSale.ViewModel.CatagoryVM>
 @{
-    ViewData["Title"] = "CatagoryList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
 }
+<table class="table">
+    <thead>
+        <tr>
+            <th> Catagory Id</th>
+            <th> Catagory Name</th>
+            <th> IsActive</th>
+            <th> Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var data in Model){
+            <tr>
+                <td>@data.CatagoryId</td>
+                <td>@data.CatagoryName</td>
+                <td>@data.IsActive</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@data.CatagoryId" class="btn btn-sm btn-warning me-1">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                   @*  3) asp-route-id="@data.CatagoryId"
 
-<h1>CatagoryList</h1>
+                    মানে:
+                    ➡️ যেই row এর Edit বাটনে ক্লিক করছো,
+                    তার CatagoryId পাঠিয়ে দিচ্ছে।
 
+                    উদাহরণ:
+                    যদি CatagoryId = 5 হয়, তাহলে URL হবে:
+
+                    /Catagory/Edit/5 *@
+
+                    <a data-id="@data.CatagoryId" class="btn btn-sm btn-danger btn-dlt">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </a>
+                    <a asp-action="Details" asp-route-id="@data.CatagoryId" class="btn btn-sm btn-success">
+                        <i class="fas fa-trash-alt"></i> Details
+                    </a>
+                </td>
+            </tr>
+        }
+       
+    </tbody>
+</table>

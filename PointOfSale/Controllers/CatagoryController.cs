@@ -1,48 +1,112 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using PointOfSale.Data;
 using PointOfSale.DataModel;
 using PointOfSale.ViewModel;
+using System.Linq;
+
 namespace PointOfSale.Controllers
 {
     public class CatagoryController : Controller
     {
-
         private readonly ApplicationDbContext _Dbcontext;
+
         public CatagoryController(ApplicationDbContext dbcontext)
         {
             _Dbcontext = dbcontext;
         }
+
         public IActionResult Index()
         {
             return View();
         }
+
         [HttpGet]
         public IActionResult CatagoryCreate()
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult CatagoryCreate(CatagoryVM obj)
         {
-            if (obj == null)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return View(obj);
             }
 
-            var data = new Catagory();
-
-            data.CatagoryName = obj.CatagoryName;
-            data.IsActive = obj.IsActive;
+            var data = new Catagory
+            {
+                CatagoryName = obj.CatagoryName,
+                IsActive = obj.IsActive
+            };
 
             _Dbcontext.Catagories.Add(data);
             _Dbcontext.SaveChanges();
 
-            return View(obj);
+            return RedirectToAction("CatagoryList");
         }
+
+        //public IActionResult CatagoryList()
+        //{
+        //    var datalist = _Dbcontext.Catagories.ToList();
+        //    return View(datalist);
+        //}
+       
         public IActionResult CatagoryList()
         {
-            return View();
+            var datalist = _Dbcontext.Catagories
+                .Select(x => new CatagoryVM
+                {
+                    CatagoryId = x.CatagoryId,
+                    CatagoryName = x.CatagoryName,
+                    IsActive = x.IsActive
+                })
+                .ToList();
+
+            return View(datalist);
         }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var data = _Dbcontext.Catagories.FirstOrDefault(x => x.CatagoryId == id);
+
+            if (data == null)
+            {
+                return NotFound();
+            }
+
+            var vm = new CatagoryVM
+            {
+                CatagoryId = data.CatagoryId,
+                CatagoryName = data.CatagoryName,
+                IsActive = data.IsActive
+            };
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(CatagoryVM obj)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(obj);
+            }
+
+            var data = _Dbcontext.Catagories.FirstOrDefault(x => x.CatagoryId == obj.CatagoryId);
+
+            if (data == null)
+            {
+                return NotFound();
+            }
+
+            data.CatagoryName = obj.CatagoryName;
+            data.IsActive = obj.IsActive;
+
+            _Dbcontext.SaveChanges();
+
+            return RedirectToAction("CatagoryList");
+        }
+
     }
 }
