@@ -3,15 +3,13 @@ using PointOfSale.Data;
 using PointOfSale.DataModel;
 using PointOfSale.ViewModel;
 using System.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PointOfSale.Controllers
 {
     public class CatagoryController : Controller
     {
         private readonly ApplicationDbContext _Dbcontext;
-
-        public int Id { get; private set; }
-
         public CatagoryController(ApplicationDbContext dbcontext)
         {
             _Dbcontext = dbcontext;
@@ -56,13 +54,13 @@ namespace PointOfSale.Controllers
        
         public IActionResult CatagoryList()
         {
-            var datalist = _Dbcontext.Catagories
-                .Select(x => new CatagoryVM
-                {
-                    CatagoryId = x.CatagoryId,
-                    CatagoryName = x.CatagoryName,
-                    IsActive = x.IsActive
-                })
+            var datalist = _Dbcontext.Catagories.Select(x => new CatagoryVM
+
+            {
+                CatagoryId = x.CatagoryId,
+                CatagoryName = x.CatagoryName,
+                IsActive = x.IsActive
+            })
                 .ToList();
 
             return View(datalist);
@@ -109,16 +107,60 @@ namespace PointOfSale.Controllers
 
             return RedirectToAction("CatagoryList");
         }
+
+        //public IActionResult Delete(int ID)
+        //{
+        //    var data = _Dbcontext.Catagories.FirstOrDefault(x => x.CatagoryId == ID);
+        //    _Dbcontext.Catagories.Remove(data);
+        //    _Dbcontext.SaveChanges();
+        //    return RedirectToAction("CatagoryList");
+        //}
+
         public IActionResult Delete(int ID)
         {
-           
-            var data = _Dbcontext.Catagories.FirstOrDefault(x => x.CatagoryId == ID);
+            if (ID == 0)
+            {
+                return Json("not valid");
+            }
 
-                _Dbcontext.Catagories.Remove(data);
+            var chackdata = _Dbcontext.Catagories.Where(x => x.CatagoryId == ID).FirstOrDefault();
+
+            if (chackdata != null)
+            {
+                _Dbcontext.Remove(chackdata);
                 _Dbcontext.SaveChanges();
-          
-            return RedirectToAction("CatagoryList");
+                return RedirectToAction("CatagoryList");   
+            }
+
+            return Json("not found");
+
         }
+
+        //public IActionResult Details(int id)
+        //{
+        //    var data = _Dbcontext.Catagories.FirstOrDefault(x => x.CatagoryId == id);
+        //    return View(data);
+        //}
+        public IActionResult Details(int id)
+        {
+            var data = _Dbcontext.Catagories
+                                 .FirstOrDefault(x => x.CatagoryId == id);
+
+            if (data == null)
+            {
+                return NotFound();
+            }
+
+            CatagoryVM vm = new CatagoryVM()
+            {
+                CatagoryId = data.CatagoryId,
+                CatagoryName = data.CatagoryName,
+                IsActive = data.IsActive
+            };
+
+            return View(vm);
+        }
+       
 
     }
 }

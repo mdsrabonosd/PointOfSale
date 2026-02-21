@@ -36,7 +36,7 @@
                     <a asp-controller="Catagory" asp-action="Delete" data-id="@data.CatagoryId" asp-route-id="@data.CatagoryId" class="btn btn-sm btn-danger btn-dlt">
                         <i class="fas fa-trash-alt"></i> Delete
                     </a>
-                    <a asp-action="Details" asp-route-id="@data.CatagoryId" class="btn btn-sm btn-success">
+                    <a asp-controller="Catagory" asp-action="Details" asp-route-id="@data.CatagoryId" class="btn btn-sm btn-success">
                         <i class="fas fa-trash-alt"></i> Details
                     </a>
                 </td>
