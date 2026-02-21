@@ -10,6 +10,8 @@ namespace PointOfSale.Controllers
     {
         private readonly ApplicationDbContext _Dbcontext;
 
+        public int Id { get; private set; }
+
         public CatagoryController(ApplicationDbContext dbcontext)
         {
             _Dbcontext = dbcontext;
@@ -105,6 +107,16 @@ namespace PointOfSale.Controllers
 
             _Dbcontext.SaveChanges();
 
+            return RedirectToAction("CatagoryList");
+        }
+        public IActionResult Delete(int ID)
+        {
+           
+            var data = _Dbcontext.Catagories.FirstOrDefault(x => x.CatagoryId == ID);
+
+                _Dbcontext.Catagories.Remove(data);
+                _Dbcontext.SaveChanges();
+          
             return RedirectToAction("CatagoryList");
         }
 
