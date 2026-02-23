@@ -13,5 +13,6 @@ namespace PointOfSale.Data
         }
         public DbSet<Product> Products { get; set; } = default;
         public DbSet<Catagory> Catagories { get; set; } = default;
+        public DbSet<Supplier> suppliers { get; set; } = default;
     }
 }

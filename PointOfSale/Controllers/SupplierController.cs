@@ -1,20 +1,48 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PointOfSale.Data;
+using PointOfSale.DataModel;
+using PointOfSale.ViewModel;
 
 namespace PointOfSale.Controllers
 {
     public class SupplierController : Controller
     {
+        private readonly ApplicationDbContext DBContext;
+
+        public SupplierController(ApplicationDbContext dbcontext)
+        {
+            DBContext = dbcontext;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
+
+        [HttpGet]
         public IActionResult SupplierCreate()
         {
             return View();
         }
-        public IActionResult SupplierList()
+
+        [HttpPost]
+        public IActionResult SupplierCreate(SupplierVM obj)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var data = new Supplier
+                {
+                    Name = obj.Name,
+                    Email = obj.Email,
+                    Phone = obj.Phone
+                };
+
+                DBContext.suppliers.Add(data);
+                DBContext.SaveChanges();
+
+            }
+            return RedirectToAction("SupplierCreate");
+
         }
     }
 }

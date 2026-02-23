@@ -1,7 +1,10 @@
-﻿namespace PointOfSale.ViewModel
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PointOfSale.ViewModel
 {
     public class SupplierVM
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }

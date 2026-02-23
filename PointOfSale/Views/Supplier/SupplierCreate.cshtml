@@ -1,7 +1,52 @@
-﻿
+﻿@model PointOfSale.ViewModel.SupplierVM
+
 @{
     ViewData["Title"] = "SupplierCreate";
 }
 
-<h1>SupplierCreate</h1>
+
+<div class="container-fluid"
+     style="background-image: url('/image/4396574.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;">
+
+    <div class="row w-100">
+        <div class="col-md-8 offset-md-2">
+            <div class="card" style="background-color: rgba(255, 255, 255, 0.9); border-radius: 12px; box-shadow: 0 0 20px rgba(0,0,0,0.3);">
+                <div class="card-body p-4">
+
+                    <h3>Supplier Create</h3>
+                    <form asp-action="SupplierCreate" asp-controller="Supplier" method="post">
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Name">Name</label>
+                            <input asp-for="Name" class="form-control" />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Email">Email</label>
+                            <input type="text" asp-for="Email" class="form-control" />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Phone">Phone</label>
+                            <input asp-for="Phone" asp-routeid="phone" class="form-control"  />
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary px-5">Submit</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 

@@ -25,7 +25,6 @@ namespace PointOfSale.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public IActionResult CatagoryCreate(CatagoryVM obj)
         {
@@ -33,7 +32,6 @@ namespace PointOfSale.Controllers
             {
                 return View(obj);
             }
-
             var data = new Catagory
             {
                 CatagoryName = obj.CatagoryName,
@@ -46,11 +44,7 @@ namespace PointOfSale.Controllers
             return RedirectToAction("CatagoryList");
         }
 
-        //public IActionResult CatagoryList()
-        //{
-        //    var datalist = _Dbcontext.Catagories.ToList();
-        //    return View(datalist);
-        //}
+       
        
         public IActionResult CatagoryList()
         {
@@ -65,6 +59,11 @@ namespace PointOfSale.Controllers
 
             return View(datalist);
         }
+        //public IActionResult CatagoryList()
+        //{
+        //    var datalist = _Dbcontext.Catagories.ToList();
+        //    return View(datalist);
+        //}
         [HttpGet]
         public IActionResult Edit(int id)
         {
