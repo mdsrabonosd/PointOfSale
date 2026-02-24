@@ -13,6 +13,7 @@
             <th scope="col">Supplier Phone</th>
             <th scope="col">Action</th>
         </tr>
+    </thead>
         @foreach (var data in Model)
         {
 
@@ -26,10 +27,10 @@
                     <a asp-action="SupplierList" asp-route-id="@data.Id" class="btn btn-sm btn-warning me-1">
                       Edit
                     </a>
-                    <a asp-action="Delete" asp-routeid="@data.Id" class="btn-sm btn-danger">
+                    <a asp-action="Delete" asp-routeid="@data.Id" class="btn-sm btn-danger me-1">
                         Delete
                     </a>
-                    <a asp-action="Details" asp-routeid="@data.Id" class="btn-sm btn-primary">
+                    <a asp-action="Details" asp-routeid="@data.Id" class="btn-sm btn-primary me-1 ">
                         Details
                     </a>
                 </td>
@@ -38,5 +39,5 @@
 
         </tbody>
         }
-   </thead>
+  
 </table>

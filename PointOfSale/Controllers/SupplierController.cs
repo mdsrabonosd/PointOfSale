@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PointOfSale.Data;
 using PointOfSale.DataModel;
 using PointOfSale.ViewModel;
@@ -43,6 +44,7 @@ namespace PointOfSale.Controllers
             }
             return RedirectToAction("SupplierCreate");
         }
+
         public IActionResult SupplierList()
         {
             var datalist = DBContext.suppliers.Select(x => new SupplierVM
@@ -54,6 +56,26 @@ namespace PointOfSale.Controllers
             }).ToList();
 
             return View(datalist);
+        }
+        //var data = DbContext.suppliers.ToList();
+        //return view(data);
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var datalist = DBContext.suppliers.FirstOrDefault(x => x.Id == id);
+            if (datalist == null)
+            {
+                return NotFound();
+            }
+            var data = new SupplierVM
+            {
+                Id=datalist.Id,
+                Name=datalist.Name,
+                Email=datalist.Email,
+                Phone = datalist.Phone
+            };
+            return View(data);
         }
     }
 }
