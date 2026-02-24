@@ -98,7 +98,6 @@ namespace PointOfSale.Controllers
             {
                 return NotFound();
             }
-
             data.CatagoryName = obj.CatagoryName;
             data.IsActive = obj.IsActive;
 

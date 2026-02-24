@@ -42,7 +42,18 @@ namespace PointOfSale.Controllers
 
             }
             return RedirectToAction("SupplierCreate");
+        }
+        public IActionResult SupplierList()
+        {
+            var datalist = DBContext.suppliers.Select(x => new SupplierVM
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Email = x.Email,
+                Phone = x.Phone
+            }).ToList();
 
+            return View(datalist);
         }
     }
 }

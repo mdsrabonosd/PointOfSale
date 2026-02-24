@@ -1,7 +1,42 @@
-﻿
+﻿@model IEnumerable<PointOfSale.ViewModel.SupplierVM>
 @{
     ViewData["Title"] = "SupplierList";
 }
 
 <h1>SupplierList</h1>
+<table class="table">
+    <thead>
+        <tr class="bg-aqua">
+            <th scope="col">#</th>
+            <th scope="col">Supplier Name</th>
+            <th scope="col">Supplier Email</th>
+            <th scope="col">Supplier Phone</th>
+            <th scope="col">Action</th>
+        </tr>
+        @foreach (var data in Model)
+        {
 
+        <tbody>
+            <tr>
+                <td>@data.Id</td>
+                <td>@data.Name</td>
+                <td>@data.Email</td>
+                <td>@data.Phone</td>
+                <td>
+                    <a asp-action="SupplierList" asp-route-id="@data.Id" class="btn btn-sm btn-warning me-1">
+                      Edit
+                    </a>
+                    <a asp-action="Delete" asp-routeid="@data.Id" class="btn-sm btn-danger">
+                        Delete
+                    </a>
+                    <a asp-action="Details" asp-routeid="@data.Id" class="btn-sm btn-primary">
+                        Details
+                    </a>
+                </td>
+               
+            </tr>
+
+        </tbody>
+        }
+   </thead>
+</table>
