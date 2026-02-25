@@ -42,7 +42,7 @@ namespace PointOfSale.Controllers
                 DBContext.SaveChanges();
 
             }
-            return RedirectToAction("SupplierCreate");
+            return RedirectToAction("SupplierList");
         }
 
         public IActionResult SupplierList()
@@ -63,19 +63,46 @@ namespace PointOfSale.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var datalist = DBContext.suppliers.FirstOrDefault(x => x.Id == id);
+            var datalist=DBContext.suppliers.FirstOrDefault(x=>x.Id==id);
             if (datalist == null)
             {
                 return NotFound();
             }
-            var data = new SupplierVM
+            else
             {
-                Id=datalist.Id,
-                Name=datalist.Name,
-                Email=datalist.Email,
-                Phone = datalist.Phone
-            };
-            return View(data);
+                var data = new SupplierVM
+                {
+                    Id = datalist.Id,
+                    Name = datalist.Name,
+                    Email = datalist.Email,
+                    Phone = datalist.Phone
+
+                };
+                return View(data);
+            }
+           
+        }
+        [HttpPost]
+        public IActionResult Edit(SupplierVM obj)
+        {
+             if (!ModelState.IsValid)
+            {
+                return View(obj);
+            }
+            var data = DBContext.suppliers.FirstOrDefault(x => x.Id == obj.Id);
+
+            if (data == null)
+            {
+                return NotFound();
+            }
+            data.Id = obj.Id;
+            data.Name = obj.Name;
+            data.Email = obj.Email;
+            data.Phone = obj.Phone;
+
+            DBContext.SaveChanges();
+
+            return RedirectToAction("SupplierList");
         }
     }
 }
