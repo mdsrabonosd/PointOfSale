@@ -14,7 +14,6 @@ namespace PointOfSale.Controllers
         {
             DBContext = dbcontext;
         }
-
         public IActionResult Index()
         {
             return View();
@@ -57,9 +56,7 @@ namespace PointOfSale.Controllers
 
             return View(datalist);
         }
-        //var data = DbContext.suppliers.ToList();
-        //return view(data);
-
+        
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -104,5 +101,8 @@ namespace PointOfSale.Controllers
 
             return RedirectToAction("SupplierList");
         }
+
+        
+
     }
 }

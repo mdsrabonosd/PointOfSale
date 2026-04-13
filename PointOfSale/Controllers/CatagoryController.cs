@@ -43,9 +43,7 @@ namespace PointOfSale.Controllers
 
             return RedirectToAction("CatagoryList");
         }
-
-       
-       
+          
         public IActionResult CatagoryList()
         {
             var datalist = _Dbcontext.Catagories.Select(x => new CatagoryVM
@@ -98,6 +96,7 @@ namespace PointOfSale.Controllers
             {
                 return NotFound();
             }
+
             data.CatagoryName = obj.CatagoryName;
             data.IsActive = obj.IsActive;
 
@@ -158,7 +157,26 @@ namespace PointOfSale.Controllers
 
             return View(vm);
         }
-       
+        public IActionResult Detail(int id)
+        {
+            var data = _Dbcontext.Catagories
+                                 .FirstOrDefault(x => x.CatagoryId == id);
+
+            if (data == null)
+            {
+                return NotFound();
+            }
+
+            CatagoryVM vm = new CatagoryVM()
+            {
+                CatagoryId = data.CatagoryId,
+                CatagoryName = data.CatagoryName,
+                IsActive = data.IsActive
+            };
+
+            return View(vm);
+        }
+
 
     }
 }
