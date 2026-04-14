@@ -6,13 +6,14 @@ namespace PointOfSale.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext>options)
+            :base(options)
         {
-   
+          
         }
         public DbSet<Product> Products { get; set; } = default;
         public DbSet<Catagory> Catagories { get; set; } = default;
         public DbSet<Supplier> suppliers { get; set; } = default;
+
     }
 }

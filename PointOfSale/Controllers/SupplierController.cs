@@ -101,6 +101,21 @@ namespace PointOfSale.Controllers
 
             return RedirectToAction("SupplierList");
         }
+        public IActionResult Delete(int id)
+        {
+            if (id == 0)
+            {
+                return Json("not valid");
+            }
+            var data = DBContext.suppliers.FirstOrDefault(x => x.Id == id);
+            if (data != null)
+            {
+                DBContext.Remove(data);
+                DBContext.SaveChanges();
+                return RedirectToAction("SupplierList");
+            }
+            return View();
+        }
 
         
 
