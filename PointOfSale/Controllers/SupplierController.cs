@@ -117,6 +117,11 @@ namespace PointOfSale.Controllers
             return View();
         }
 
+        public IActionResult Details(int id)
+        {
+            var data = DBContext.suppliers.FirstOrDefault(x => x.Id == id);
+            return View(data);
+        }
         
 
     }
