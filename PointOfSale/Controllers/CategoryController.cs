@@ -7,10 +7,10 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PointOfSale.Controllers
 {
-    public class CatagoryController : Controller
+    public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _Dbcontext;
-        public CatagoryController(ApplicationDbContext dbcontext)
+        public CategoryController(ApplicationDbContext dbcontext)
         {
             _Dbcontext = dbcontext;
         }
@@ -21,36 +21,36 @@ namespace PointOfSale.Controllers
         }
 
         [HttpGet]
-        public IActionResult CatagoryCreate()
+        public IActionResult CategoryCreate()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult CatagoryCreate(CatagoryVM obj)
+        public IActionResult CategoryCreate(CategoryVM obj)
         {
             if (!ModelState.IsValid)
             {
                 return View(obj);
             }
-            var data = new Catagory
+            var data = new Category
             {
-                CatagoryName = obj.CatagoryName,
+                CategoryName = obj.CategoryName,
                 IsActive = obj.IsActive
             };
 
-            _Dbcontext.Catagories.Add(data);
+            _Dbcontext.Categories.Add(data);
             _Dbcontext.SaveChanges();
 
-            return RedirectToAction("CatagoryList");
+            return RedirectToAction("CategoryList");
         }
           
-        public IActionResult CatagoryList()
+        public IActionResult CategoryList()
         {
-            var datalist = _Dbcontext.Catagories.Select(x => new CatagoryVM
+            var datalist = _Dbcontext.Categories.Select(x => new CategoryVM
 
             {
-                CatagoryId = x.CatagoryId,
-                CatagoryName = x.CatagoryName,
+                CategoryId = x.CategoryId,
+                CategoryName = x.CategoryName,
                 IsActive = x.IsActive
             })
                 .ToList();
@@ -65,17 +65,17 @@ namespace PointOfSale.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var data = _Dbcontext.Catagories.FirstOrDefault(x => x.CatagoryId == id);
+            var data = _Dbcontext.Categories.FirstOrDefault(x => x.CategoryId == id);
 
             if (data == null)
             {
                 return NotFound();
             }
 
-            var vm = new CatagoryVM
+            var vm = new CategoryVM
             {
-                CatagoryId = data.CatagoryId,
-                CatagoryName = data.CatagoryName,
+                CategoryId = data.CategoryId,
+                CategoryName = data.CategoryName,
                 IsActive = data.IsActive
             };
 
@@ -83,26 +83,26 @@ namespace PointOfSale.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(CatagoryVM obj)
+        public IActionResult Edit(CategoryVM obj)
         {
             if (!ModelState.IsValid)
             {
                 return View(obj);
             }
 
-            var data = _Dbcontext.Catagories.FirstOrDefault(x => x.CatagoryId == obj.CatagoryId);
+            var data = _Dbcontext.Categories.FirstOrDefault(x => x.CategoryId == obj.CategoryId);
 
             if (data == null)
             {
                 return NotFound();
             }
 
-            data.CatagoryName = obj.CatagoryName;
+            data.CategoryName = obj.CategoryName;
             data.IsActive = obj.IsActive;
 
             _Dbcontext.SaveChanges();
 
-            return RedirectToAction("CatagoryList");
+            return RedirectToAction("CategoryList");
         }
 
         //public IActionResult Delete(int ID)
@@ -120,13 +120,13 @@ namespace PointOfSale.Controllers
                 return Json("not valid");
             }
 
-            var chackdata = _Dbcontext.Catagories.Where(x => x.CatagoryId == ID).FirstOrDefault();
+            var chackdata = _Dbcontext.Categories.Where(x => x.CategoryId == ID).FirstOrDefault();
 
             if (chackdata != null)
             {
                 _Dbcontext.Remove(chackdata);
                 _Dbcontext.SaveChanges();
-                return RedirectToAction("CatagoryList");   
+                return RedirectToAction("CategoryList");   
             }
 
             return Json("not found");
@@ -140,18 +140,18 @@ namespace PointOfSale.Controllers
         //}
         public IActionResult Details(int id)
         {
-            var data = _Dbcontext.Catagories
-                                 .FirstOrDefault(x => x.CatagoryId == id);
+            var data = _Dbcontext.Categories
+                                 .FirstOrDefault(x => x.CategoryId == id);
 
             if (data == null)
             {
                 return NotFound();
             }
 
-            CatagoryVM vm = new CatagoryVM()
+            CategoryVM vm = new CategoryVM()
             {
-                CatagoryId = data.CatagoryId,
-                CatagoryName = data.CatagoryName,
+                CategoryId = data.CategoryId,
+                CategoryName = data.CategoryName,
                 IsActive = data.IsActive
             };
 

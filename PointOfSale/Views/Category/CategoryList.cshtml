@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PointOfSale.ViewModel.CatagoryVM>
+﻿@model IEnumerable<PointOfSale.ViewModel.CategoryVM>
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 
@@ -13,16 +13,17 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var data in Model){
+        @foreach (var data in Model)
+        {
             <tr>
-                <td>@data.CatagoryId</td>
-                <td>@data.CatagoryName</td>
+                <td>@data.CategoryId</td>
+                <td>@data.CategoryName</td>
                 <td>@data.IsActive</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@data.CatagoryId" class="btn btn-sm btn-warning me-1">
+                    <a asp-action="Edit" asp-route-id="@data.CategoryId" class="btn btn-sm btn-warning me-1">
                         <i class="fas fa-edit"></i> Edit
                     </a>
-                   @*  3) asp-route-id="@data.CatagoryId"
+                    @*  3) asp-route-id="@data.CatagoryId"
 
                     মানে:
                     ➡️ যেই row এর Edit বাটনে ক্লিক করছো,
@@ -33,15 +34,15 @@
 
                     /Catagory/Edit/5 *@
 
-                    <a asp-controller="Catagory" asp-action="Delete" data-id="@data.CatagoryId" asp-route-id="@data.CatagoryId" class="btn btn-sm btn-danger btn-dlt">
+                    <a asp-controller="Category" asp-action="Delete" data-id="@data.CategoryId" asp-route-id="@data.CategoryId" class="btn btn-sm btn-danger btn-dlt">
                         <i class="fas fa-trash-alt"></i> Delete
                     </a>
-                    <a asp-controller="Catagory" asp-action="Details" asp-route-id="@data.CatagoryId" class="btn btn-sm btn-success">
+                    <a asp-controller="Category" asp-action="Details" asp-route-id="@data.CategoryId" class="btn btn-sm btn-success">
                         <i class="fas fa-trash-alt"></i> Details
                     </a>
                 </td>
             </tr>
         }
-       
+
     </tbody>
 </table>

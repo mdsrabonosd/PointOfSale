@@ -2,11 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 namespace PointOfSale.DataModel
 {
-    public class Catagory
+    public class Category
     {
         [Key]
-        public int CatagoryId { get; set; }
-        public string CatagoryName { get; set; }
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
         public bool IsActive { get; set; }
     }
 }

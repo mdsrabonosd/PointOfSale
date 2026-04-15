@@ -1,4 +1,5 @@
-﻿@model PointOfSale.ViewModel.CatagoryVM
+﻿﻿
+@model PointOfSale.ViewModel.CategoryVM
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
@@ -13,11 +14,11 @@
                 </div>
 
                 <div class="card-body">
-                    <form asp-controller="Catagory" asp-action="CatagoryCreate" method="post">
+                    <form asp-controller="Category" asp-action="CategoryCreate" method="post">
 
                         <div class="form-group mb-3">
-                            <label asp-for="CatagoryName"></label>
-                            <input asp-for="CatagoryName" class="form-control" />
+                            <label asp-for="CategoryName"></label>
+                            <input asp-for="CategoryName" class="form-control" />
                         </div>
 
                         <div class="form-check mb-3">

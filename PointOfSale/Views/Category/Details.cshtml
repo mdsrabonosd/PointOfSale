@@ -1,4 +1,4 @@
-﻿@model PointOfSale.ViewModel.CatagoryVM
+﻿@model PointOfSale.ViewModel.CategoryVM
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
@@ -45,25 +45,25 @@
 </style>
 
 <div class="vaccine-table-container">
-    <h2>Catagory Details</h2>
+    <h2>Category Details</h2>
     <table class="table">
         <tbody>
             <tr>
-                <th>Catagory ID</th>
-                <td>@Model.CatagoryId</td>
+                <th>Category ID</th>
+                <td>@Model.CategoryId</td>
             </tr>
 
 
             <tr>
-                <th>CatagoryName</th>
-                <td>@Model.CatagoryName</td>
+                <th>CategoryName</th>
+                <td>@Model.CategoryName</td>
             </tr>
 
             <tr>
                 <th>IsActive</th>
                 <td>@Model.IsActive</td>
             </tr>
-          
+
         </tbody>
     </table>
 </div>
