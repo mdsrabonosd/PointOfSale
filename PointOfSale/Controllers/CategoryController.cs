@@ -28,13 +28,25 @@ namespace PointOfSale.Controllers
         [HttpPost]
         public IActionResult CategoryCreate(CategoryVM obj)
         {
+            // যদি ফিল্ড খালি থাকে বা ইনভ্যালিড হয়
             if (!ModelState.IsValid)
             {
+                return View(obj); // এটি এরর মেসেজসহ পেজটি আবার লোড করবে
+            }
+
+          
+            bool isDuplicate = _Dbcontext.Categories
+                                         .Any(x => x.CategoryName.ToLower() == obj.CategoryName.ToLower());
+
+            if (isDuplicate)
+            {
+                ModelState.AddModelError("CategoryName", "This name is already exist");
                 return View(obj);
             }
+
             var data = new Category
             {
-                CategoryName = obj.CategoryName,
+                CategoryName = obj.CategoryName.Trim(),
                 IsActive = obj.IsActive
             };
 
@@ -43,7 +55,6 @@ namespace PointOfSale.Controllers
 
             return RedirectToAction("CategoryList");
         }
-          
         public IActionResult CategoryList()
         {
             var datalist = _Dbcontext.Categories.Select(x => new CategoryVM
