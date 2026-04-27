@@ -7,12 +7,12 @@
 <form asp-action="Create" method="post">
     <div>
         <label>Customer Name</label>
-        <input asp-for="CustomerName" class="form-control" />
+        <input class="form-control" />
     </div>
 
     <div>
         <label>Date</label>
-        <input asp-for="Date" type="date" class="form-control" />
+        <input type="date" class="form-control" />
     </div>
 
     <hr />
@@ -41,11 +41,6 @@
     <button type="button" onclick="addRow()">Add Item</button>
 
     <hr />
-
-    <div>
-        <label>Grand Total</label>
-        <input asp-for="GrandTotal" class="form-control" readonly />
-    </div>
 
     <br />
     <button type="submit">Save Invoice</button>
