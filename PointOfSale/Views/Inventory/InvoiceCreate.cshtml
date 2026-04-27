@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Create Invoice";
+}
+
+<h2>Create Invoice</h2>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>Customer Name</label>
+        <input asp-for="CustomerName" class="form-control" />
+    </div>
+
+    <div>
+        <label>Date</label>
+        <input asp-for="Date" type="date" class="form-control" />
+    </div>
+
+    <hr />
+
+    <h4>Items</h4>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody id="itemTable">
+            <tr>
+                <td><input name="Items[0].ProductName" class="form-control" /></td>
+                <td><input name="Items[0].Quantity" type="number" class="form-control" /></td>
+                <td><input name="Items[0].Price" type="number" class="form-control" /></td>
+                <td><input name="Items[0].Total" type="number" class="form-control" readonly /></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button type="button" onclick="addRow()">Add Item</button>
+
+    <hr />
+
+    <div>
+        <label>Grand Total</label>
+        <input asp-for="GrandTotal" class="form-control" readonly />
+    </div>
+
+    <br />
+    <button type="submit">Save Invoice</button>
+</form>
+
+<script>
+    let index = 1;
+
+    function addRow() {
+        let table = document.getElementById("itemTable");
+
+        let row = `
+        <tr>
+            <td><input name="Items[${index}].ProductName" class="form-control" /></td>
+            <td><input name="Items[${index}].Quantity" type="number" class="form-control" /></td>
+            <td><input name="Items[${index}].Price" type="number" class="form-control" /></td>
+            <td><input name="Items[${index}].Total" type="number" class="form-control" readonly /></td>
+        </tr>`;
+
+        table.innerHTML += row;
+        index++;
+    }
+</script>

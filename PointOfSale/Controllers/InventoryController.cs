@@ -8,5 +8,14 @@ namespace PointOfSale.Controllers
         {
             return View();
         }
+        public IActionResult InvoiceCreate()
+        {
+            return View();
+        }
+        public IActionResult InvoiceList()
+        {
+            return View();
+        }
+        
     }
 }
